@@ -1,1 +1,9 @@
-export * from './SimpleModal';
+export {
+  SimpleModal,
+  SimpleModalProps,
+  SimpleModalCard,
+  SimpleModalCardProps,
+  closeAllSimpleModals,
+  closeSimpleModal,
+  showSimpleModal,
+} from './SimpleModal';
