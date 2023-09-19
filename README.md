@@ -102,6 +102,93 @@ Every time you call the `openSimpleModal` function, the `data-modal-data` attrib
 
 However, since we don't bind state variables into the component, you'll have to manually call `openSimpleModal` every time you want to change the data of the modal.
 
+### - Add animation when opening and closing the modal
+
+Personally, I like using [animate.css](https://animate.style) to add basic animations to this modal.
+
+Adding fade in animations could be as simple as the example below:
+
+```jsx
+import { SimpleModal, SimpleModalCard, showSimpleModal } from 'jsx-modal';
+import 'animate.css';
+
+export default function Home() {
+  return (
+    <main className="flex justify-center items-center h-screen">
+      <SimpleModal exitOnEscape modalID="myCustomModal">
+        {(props) => (
+          <SimpleModalCard>
+            <div
+              className="bg-slate-400 p-2 w-52 h-52 rounded-md animate__animated animate__fadeIn animate__faster"
+              id="displayCard"
+            >
+              <p>Hello {props.name}</p>
+            </div>
+          </SimpleModalCard>
+        )}
+      </SimpleModal>
+
+      <button
+        className="p-2 bg-blue-700 text-white"
+        onClick={() => showSimpleModal('myCustomModal', { name: 'Developer' })}
+      >
+        Open Modal
+      </button>
+    </main>
+  );
+}
+```
+
+You might be confused on why I created a separate child component to hold the actual class style and animate.css classes. You can think of the `SimpleModalCard` as a utility to place stuffs on center of the screen, on some case, you can also use it as an actual card itself. However in this case, `animate.css` will conflict with the transform css property of the `SimpleModalCard` component. So to avoid this, I created a separate component to hold the actual card and animate.css classes.
+
+Then for adding a fade out animation when closing the modal, this one could be a little tricky. We can simulate a fade out animation if users click a close button inside the modal.
+
+```jsx
+import { SimpleModal, SimpleModalCard, closeSimpleModal, showSimpleModal } from 'jsx-modal';
+import 'animate.css';
+
+export default function Home() {
+  return (
+    <main className="flex justify-center items-center h-screen">
+      <SimpleModal modalID="myCustomModal">
+        {(props) => (
+          <SimpleModalCard>
+            <div
+              className="bg-slate-400 p-2 w-52 h-52 rounded-md animate__animated animate__fadeIn animate__faster"
+              id="displayCard"
+            >
+              <p>Hello {props.name}</p>
+              <button
+                onClick={() => {
+                  // We swap the animation classes to simulate a fade out animation
+                  document.getElementById('displayCard')?.classList.remove('animate__fadeIn');
+                  document.getElementById('displayCard')?.classList.add('animate__fadeOut');
+                  setTimeout(() => {
+                    closeSimpleModal('myCustomModal');
+                    // We swap the animation classes to simulate a fade in animation
+                    document.getElementById('displayCard')?.classList.remove('animate__fadeOut');
+                    document.getElementById('displayCard')?.classList.add('animate__fadeIn');
+                  }, 250);
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </SimpleModalCard>
+        )}
+      </SimpleModal>
+
+      <button
+        className="p-2 bg-blue-700 text-white"
+        onClick={() => showSimpleModal('myCustomModal', { name: 'Developer' })}
+      >
+        Open Modal
+      </button>
+    </main>
+  );
+}
+```
+
 ### License
 
 MIT license, Copyright (c) Leo Mark Castro. For more information see `LICENSE`.
