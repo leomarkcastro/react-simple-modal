@@ -8,10 +8,10 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Leo Mark Castro",
-  "homepage": "https://github.com/leomarkcastro/jsx-breakpoints-v3.git#readme",
+  "homepage": "https://github.com/leomarkcastro/react-simple-modal.git#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/leomarkcastro/jsx-breakpoints-v3.git"
+    "url": "https://github.com/leomarkcastro/react-simple-modal.git"
   },
   "scripts": {
     "start": "start-storybook -p 6006",
