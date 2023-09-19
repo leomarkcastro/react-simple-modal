@@ -1,4 +1,4 @@
-# React Simple Modals
+# (JSX Modal) React Simple Modals
 
 Modals implemented using HTML native [Dialogs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog). This modal doesn't use global state and context to determine if the modal is open or not. Instead, it uses the `open` attribute of the HTML Dialog element.
 
@@ -62,7 +62,7 @@ In this example, I was using tailwind to style the modal card. You can use any c
 
 ```jsx
 // index.tsx
-import { SimpleModal, SimpleModalCard, showSimpleModal } from 'react-simple-modal';
+import { SimpleModal, SimpleModalCard, showSimpleModal } from 'jsx-modal';
 
 const app = () => {
   return (
