@@ -1,7 +1,8 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { SimpleModal } from './SimpleModal-Component';
-import { closeAllSimpleModals, getMetadataFromSimpleModal, openSimpleModal, useForceUpdate } from './SimpleModal-Fx';
+import { SimpleModal } from './SimpleModal-Dialog';
+import { closeAllSimpleModals, openSimpleModal } from './SimpleModal-Fx';
+import { SimpleModalCard } from './SimpleModal-Card';
 
 export default {
   title: 'Simple Modal',
@@ -13,15 +14,11 @@ const Modals = () => {
     <>
       <SimpleModal modalID="fullscreen-modal">
         {(data) => (
-          <div
+          <SimpleModalCard
             style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              backgroundColor: 'lightgray',
-              padding: '1rem',
               width: '100vw',
               height: '100vh',
+              backgroundColor: 'white',
             }}
           >
             <button
@@ -33,21 +30,16 @@ const Modals = () => {
             </button>
             <button>Non Exit Button</button>
             <p>Props: {data.props}</p>
-          </div>
+          </SimpleModalCard>
         )}
       </SimpleModal>
-      <SimpleModal modalID="mini-modal">
+      <SimpleModal modalID="mini-modal" static>
         {(data) => (
-          <div
+          <SimpleModalCard
             style={{
-              position: 'fixed',
-              top: '50%',
-              left: '50%',
+              width: '200px',
+              height: '200px',
               backgroundColor: 'white',
-              padding: '1rem',
-              width: '50vw',
-              height: '50vh',
-              transform: 'translate(-50%, -50%)',
             }}
           >
             <button
@@ -59,7 +51,7 @@ const Modals = () => {
             </button>
             <button>Non Exit Button</button>
             <p>Props: {data.props}</p>
-          </div>
+          </SimpleModalCard>
         )}
       </SimpleModal>
     </>

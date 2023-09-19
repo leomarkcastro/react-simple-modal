@@ -51,6 +51,7 @@ const SimpleModal: React.FC<SimpleModalProps> = (props) => {
         border: 'none',
         maxWidth: '100vw',
         maxHeight: '100vh',
+        position: 'fixed',
       }}
       id={props.modalID}
       ref={dialogRef}

@@ -58,6 +58,7 @@ export default {
       exclude: 'node_modules/**',
       presets: ['@babel/preset-env', ''],
     }),
+    peerDeps(),
     resolve(),
     commonjs(),
     typescript({
@@ -72,4 +73,5 @@ export default {
       open: true,
     }),
   ],
+  external: ['react', 'react-dom', 'tslib'],
 };
